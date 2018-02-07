@@ -33,6 +33,11 @@ public:
 	static int getColumns();
 	static int getNumAnts();
 	static int getNumDoodlebugs();
+	
+	//includes the intro and goodbye ascii art
+	void introArtReader();
+	void goodbyeArtReader();
+	string getFileContents(ifstream& File);
 };
 
 #endif
