@@ -12,7 +12,7 @@
 class Ant : public Critter
 {
 public:
-	Ant();
+	Ant(int, int);
 	~Ant();
 };
 

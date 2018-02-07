@@ -14,14 +14,13 @@ private:
     int timeSinceBreed; //track time since last breeding
     int row; //track critter row
     int col; //track critter col    
-    shared_ptr<Grid> grid; 
 public: 
-    Critter(int, int, shared_ptr<Grid>&); 
+    Critter(int, int);
     //virtual void move() = 0; 
     void incrementTime();  
     void resetTime();   //call after breeding to reset clock to 0
     int getTime(); 
-    Critter* breed(int, int, shared_ptr<Grid>&); //input row and col, returns pointer to new Critter
+    Critter* breed(int, int); //input row and col, returns pointer to new Critter
     virtual ~Critter(); 
 }; 
 

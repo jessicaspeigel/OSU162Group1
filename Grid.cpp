@@ -21,9 +21,10 @@ Grid::Grid()
 	doodleBugs = Menu::getNumDoodlebugs();
 
     //Initialize grid with nullptr
-    grid = new Critter*[rows]; 
+    grid = new Critter**[rows]; 
     for(int r = 0; r < rows; r++)
     {
+        grid[r] = new Critter*[columns]; 
         for(int c = 0; c < columns; c++)
         {
             grid[r][c] = nullptr; 
@@ -51,19 +52,35 @@ void Grid::fillGrid()
         {
             randRow = rand() % rows; 
             randCol = rand() % columns; 
-        } while(grid[randRow][randCol] != nullptr)
+        } while(grid[randRow][randCol] != nullptr);
         
-        grid[randRow][randCol] = new Ant(); 
+        grid[randRow][randCol] = new Ant(randRow, randCol); 
     }
 
-    for(int d = 0; d < doodlebugs; d++)
+    for(int d = 0; d < doodleBugs; d++)
     {
         do
         {
             randRow = rand() % rows; 
             randCol = rand() % columns; 
-        } while(grid[randRow][randCol] != nullptr)
+        } while(grid[randRow][randCol] != nullptr);
         
-        grid[randRow][randCol] = new Doodlebug(); 
+        grid[randRow][randCol] = new Doodlebug(randRow, randCol); 
     }
+}
+
+Grid::~Grid() 
+{
+    for(int r = 0; r < rows; r++)
+    {
+        for(int c = 0; c < columns; c++)
+        {
+            if(grid[r][c] != nullptr)
+            {
+                delete grid[r][c];
+            }
+        }
+        delete [] grid[r]; 
+    }
+    delete [] grid;
 }

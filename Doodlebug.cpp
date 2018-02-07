@@ -8,11 +8,7 @@
 
 #include "Doodlebug.hpp"
 
-
-
-
-
-Doodlebug::Doodlebug()
+Doodlebug::Doodlebug(int row, int col) : Critter(row, col) 
 {
 }
 

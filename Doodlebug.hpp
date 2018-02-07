@@ -12,7 +12,7 @@
 class Doodlebug : public Critter
 {
 public:
-	Doodlebug();
+	Doodlebug(int, int);
 	~Doodlebug();
 };
 

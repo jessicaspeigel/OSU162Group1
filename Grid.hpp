@@ -22,7 +22,7 @@ private:
 	int doodleBugs;
 	int rows;
 	int columns;
-    Critter** grid;	
+    Critter*** grid;	
 
 public:
 	Grid();
@@ -30,6 +30,7 @@ public:
     ** Randomly place ants and doodlebugs in grid
     ****************************************************************************/
     void fillGrid(); 
+    ~Grid(); 
 };
 
 #endif

@@ -10,7 +10,7 @@
 
 
 
-Ant::Ant()
+Ant::Ant(int row, int column) : Critter(row, column)
 {
 }
 
