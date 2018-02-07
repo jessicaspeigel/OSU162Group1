@@ -8,7 +8,8 @@
 
 
 #pragma once
-class Ant
+#include "Critter.hpp"
+class Ant : public Critter
 {
 public:
 	Ant();

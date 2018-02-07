@@ -7,7 +7,9 @@
 *********************************************************************/
 
 #pragma once
-class Doodlebug
+#include "Critter.hpp"
+
+class Doodlebug : public Critter
 {
 public:
 	Doodlebug();

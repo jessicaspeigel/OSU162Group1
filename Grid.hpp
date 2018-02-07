@@ -7,6 +7,9 @@
 
 #ifndef GRID_HPP
 #define GRID_HPP
+#include "Critter.hpp"
+#include "Ant.hpp"
+#include "Doodlebug.hpp"
 
 #include <string>
 using std::string;
@@ -19,10 +22,14 @@ private:
 	int doodleBugs;
 	int rows;
 	int columns;
-	
+    Critter** grid;	
 
 public:
 	Grid();
+    /****************************************************************************
+    ** Randomly place ants and doodlebugs in grid
+    ****************************************************************************/
+    void fillGrid(); 
 };
 
 #endif
