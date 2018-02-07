@@ -15,6 +15,9 @@ using std::string;
 using std::stringstream;
 
 
+#include <fstream>
+using std::ifstream;
+
 int Menu::inputInt(int lowerBound, int upperBound, string prompt)
 {
 	string input;		// holds contents of getline
@@ -112,4 +115,77 @@ int Menu::getNumDoodlebugs()
 
 	int ants = inputInt(MIN_DBUGS, MAX_DBUGS, prompt);
 	return ants;
+}
+/***************************************************
+Citation - Thise code is modified from
+http://www.cplusplus.com/forum/general/58945/
+user - TheMassiveChipmunk
+
+introArtReader() - reads the intro ascii art from a file using getFileContents();
+then couts the file lines to the console and closes the file
+
+****************************************************/
+void Menu::introArtReader()
+{
+		//Open file
+		ifstream Reader("introFile.txt");
+
+		//Get file
+		string introArt = getFileContents(Reader);
+
+		cout << introArt << endl;               //Print it to the screen
+
+		Reader.close();                           //Close file
+}
+
+/***************************************************
+Citation - Thise code is modified from
+http://www.cplusplus.com/forum/general/58945/
+user - TheMassiveChipmunk
+
+goodbyeArtReader() - reads the intro ascii art from a file using getFileContents();
+then couts the file lines to the console and closes the file
+
+****************************************************/
+void Menu::goodbyeArtReader()
+{
+	//Open file
+	ifstream Reader("byefile.txt");
+
+	//Get file
+	string goodbyeArt = getFileContents(Reader);
+
+	cout << goodbyeArt << endl;               //Print it to the screen
+
+	Reader.close();                           //Close file
+}
+
+/***************************************************
+
+getFileContents() - cheks to make sure the file is available
+and if it is get the appropriately space and /n art
+
+****************************************************/
+string Menu::getFileContents(ifstream & File)
+{
+	//All lines
+	string Lines = "";
+
+	//Check if everything is good
+	if (File)
+	{
+		while (File.good())
+		{
+			string TempLine;                  //Temp line
+			getline(File, TempLine);        //Get temp line
+			TempLine += "\n";                      //Add newline character
+
+			Lines += TempLine;                     //Add newline
+		}
+		return Lines;
+	}
+	else                           //Return error
+	{
+		return "ERROR File does not exist.";
+	}
 }
