@@ -9,6 +9,7 @@ Critter::Critter(int row, int col)
 {
     this->row = row; 
     this->col = col;
+    this->moved = false;
     timeSinceBreed = 0; 
 }
 
@@ -27,9 +28,24 @@ void Critter::resetTime()
     timeSinceBreed = 0;
 }
 
-Critter* Critter::breed(int row, int col)
+int Critter::getRow()
 {
-    return new Critter(row, col); 
+    return row; 
+}
+
+int Critter::getCol()
+{
+    return col;
+}
+
+void Critter::setToNotMoved()
+{
+    moved = false;
+}
+
+bool Critter::getMoved()
+{
+    return moved; 
 }
 
 Critter::~Critter(){}
