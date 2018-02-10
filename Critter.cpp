@@ -5,11 +5,11 @@
  ****************************************************************************/
  #include "Critter.hpp" 
 
-Critter::Critter(int row, int col, shared_ptr<Grid>& grid)
+Critter::Critter(int row, int col)
 {
     this->row = row; 
     this->col = col;
-    this->grid = grid;
+    this->moved = false;
     timeSinceBreed = 0; 
 }
 
@@ -28,9 +28,24 @@ void Critter::resetTime()
     timeSinceBreed = 0;
 }
 
-Critter* Critter::breed(int row, int col, shared_ptr<Grid>& g)
+int Critter::getRow()
 {
-    return new Critter(row, col, g); 
+    return row; 
+}
+
+int Critter::getCol()
+{
+    return col;
+}
+
+void Critter::setToNotMoved()
+{
+    moved = false;
+}
+
+bool Critter::getMoved()
+{
+    return moved; 
 }
 
 Critter::~Critter(){}

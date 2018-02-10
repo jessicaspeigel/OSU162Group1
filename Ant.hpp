@@ -8,10 +8,22 @@
 
 
 #pragma once
-class Ant
+#include "Critter.hpp"
+
+class Ant : public Critter
 {
 public:
-	Ant();
-	~Ant();
+	Ant(int, int);
+    /****************************************************************************
+    ** Input: pointer to an int arrray created in the Grid class. Array represents
+        cells adjacent to ant. Ant tries to move to one of four adjacent spaces 
+        in the grid. If move is valid, ant adjusts row and column and returns true. 
+        Function returns false otherwise, and no move made
+    ****************************************************************************/
+    virtual bool move(int*); 
+    /****************************************************************************
+    ** Returns 1, used for identifying creature in Grid::grid
+    ****************************************************************************/
+    virtual int getType(); 
 };
 
