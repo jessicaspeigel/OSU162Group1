@@ -10,7 +10,7 @@ Critter::Critter(int row, int col)
     this->row = row; 
     this->col = col;
     this->moved = false;
-    timeSinceBreed = 0; 
+    resetTime();
 }
 
 void Critter::incrementTime()

@@ -20,7 +20,8 @@ int Ant::getType()
 bool Ant::move(int* arr)
 {
     int dir = rand() % 4; //enum type defined in Critter.hpp, UP=0, RIGHT=1, DOWN=2, LEFT=3 (clockwise rotation as index increases)
-    bool validMove = false; 
+    bool validMove = false;
+
     if(arr[dir] == 0) //If the arr[dir] == 0, the grid cell is an open space, not a wall or critter, and move is valid
     {
         validMove = true; 
@@ -40,6 +41,13 @@ bool Ant::move(int* arr)
                 break;
         }
     }
-    moved = validMove; //update the critter's moved variable, true if moved, false otherwise
+
+    // Is it time to breed?
+
+    // Age the ant
+    incrementTime();
+
+    //update the critter's moved variable, true if moved, false otherwise
+    moved = validMove;
     return validMove;
 }

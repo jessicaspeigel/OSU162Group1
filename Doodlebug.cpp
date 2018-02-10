@@ -21,7 +21,7 @@ int Doodlebug::getType()
 bool Doodlebug::move(int* arr)
 {
     bool validMove = false; 
-    int dir = rand() % 4; 
+    int dir = rand() % 4;
 
     for(int cell = 0; cell < 4; cell++)
     {
@@ -78,6 +78,14 @@ bool Doodlebug::move(int* arr)
             }
         }
     }
+
+    // Time to starve?
+
+    // Time to breed?
+
+    // Age the doodlebug for breeding
+    incrementTime();
+
     moved = validMove; //update moved, so doodlebug not moved again if true
     return validMove;
 }
