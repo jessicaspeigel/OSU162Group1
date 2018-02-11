@@ -8,8 +8,11 @@
 #include "Menu.hpp"
 #include "Grid.hpp"
 #include <iostream>
+#include <iomanip>
 using std::cout;
 using std::endl;
+using std::setfill;
+using std::setw;
 
 
 Grid::Grid()
@@ -111,30 +114,46 @@ void Grid::moveCritters()
             } //if no valid move was made, we move on to the next cell
         }
     }
-    //We loop again to reset Critter::moved to false, which allows critters to move again the next round
-    //Print here as well
-    for(int r = 0; r < rows; r++)
-    {
-        for(int c = 0; c < columns; c++)
-        {
+    printGrid();
+}
+
+void Grid::printGrid()
+{
+    // Constants
+    const char FILLCHAR = '-';
+    const char ANTCHAR = 'O';
+    const char BUGCHAR = 'X';
+    const char SPACECHAR = ' ';
+    const char EDGECHAR = '|';
+    // Clear the screen (code from Piazza as an alternative to system("clear"))
+    cout << "\033[2J\033[1;1H";
+    // Output the first line
+    cout << setfill(FILLCHAR);
+    cout << FILLCHAR << setw(columns * 2) << FILLCHAR << endl;
+    // Loop through rows and columns and print the values
+    for (int r = 0; r < rows; r++) {
+        // Output the first edge
+        cout << EDGECHAR;
+        for (int c = 0; c < columns; c++) {
+            // Print the cell
             if(grid[r][c] != nullptr)
             {
-                grid[r][c]->setToNotMoved(); 
+                grid[r][c]->setToNotMoved();
                 if(grid[r][c]->getType() == ANT)
                 {
-                    std::cout << " O "; 
+                    cout << ANTCHAR << EDGECHAR;
                 }
                 else
                 {
-                    std::cout << " X "; 
+                    cout << BUGCHAR << EDGECHAR;
                 }
             }
             else
             {
-                std::cout << "  "; 
+                cout << SPACECHAR << EDGECHAR;
             }
         }
-        std::cout << std::endl;
+        cout << endl << FILLCHAR << setw(columns * 2) << FILLCHAR << endl;
     }
 }
 

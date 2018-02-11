@@ -38,7 +38,11 @@ public:
     ** Loops through Grid::grid and calls move function for each critter, mutates
         grid as necessary
     ****************************************************************************/
-    void moveCritters(); 
+    void moveCritters();
+	/****************************************************************************
+    ** Prints the grid
+    ****************************************************************************/
+	void printGrid();
     /****************************************************************************
     ** Input: int row, int col. If grid[row][col] == nullptr, else returns 
         the critter's type.
@@ -55,7 +59,7 @@ public:
     ****************************************************************************/
     void getSurroundingCells(int, int); 
     int getSteps(); 
-    ~Grid(); 
+    ~Grid();
 };
 
 #endif
