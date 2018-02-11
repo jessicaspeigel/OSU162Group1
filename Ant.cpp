@@ -2,7 +2,7 @@
 ** Group Project 1 Program name: Predator-Prey Game
 ** Author: Group 1
 ** Date : 2/ / 18
-** Description: Specification file for the Ant class
+** Description: Implementation file for the Ant class
 *********************************************************************/
 
 #include "Ant.hpp"
