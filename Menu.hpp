@@ -10,11 +10,11 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 using std::string;
 using std::vector;
-
-#include <fstream>
 using std::ifstream;
+	
 
 class Menu
 {
@@ -35,10 +35,6 @@ class Menu
 		** Static methods are great because they can be called without having
 		** to instantiate an object.
 		** https://softwareengineering.stackexchange.com/a/113034
-		*********************************************************************/
-		/*********************************************************************
-		** Takes in two ints and a prompt. Prompts a user for an integer
-		**	in the range of those two integers (inclusive)
 		*********************************************************************/
 		static int getInteger(std::string promptText);
 		static int getIntegerWithMin(std::string promptText, int minVal);

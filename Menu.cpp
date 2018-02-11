@@ -8,6 +8,7 @@
 #include "Menu.hpp"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -15,15 +16,12 @@ using std::string;
 using std::stringstream;
 using std::numeric_limits;
 using std::streamsize;
-
-
-#include <fstream>
 using std::ifstream;
+
 
 /****************************************************
 ** Constructors
 ****************************************************/
-
 Menu::Menu(vector<string> items)
 {
 	setMenuItems(items);
@@ -31,16 +29,17 @@ Menu::Menu(vector<string> items)
 	setPromptText("");
 }
 
+
 Menu::Menu(string text, vector<string> items)
 {
 	setMenuItems(items);
 	setPromptText(text);
 }
 
+
 /****************************************************
 ** Getters / Setters
 ****************************************************/
-
 void Menu::setMenuItems(vector<string> items)
 {
 	// If menu items exists, delete it before making a new array
@@ -50,15 +49,18 @@ void Menu::setMenuItems(vector<string> items)
 	}
 }
 
+
 void Menu::setPromptText(string text)
 {
 	promptText = text;
 }
 
+
 string Menu::getPromptText()
 {
 	return promptText;
 }
+
 
 /****************************************************
 ** PUBLIC FUNCTIONS
@@ -68,7 +70,6 @@ string Menu::getPromptText()
 ** Description: Show the menu items and return the
 ** index of selected item.
 ****************************************************/
-
 int Menu::showMenu()
 {
 	// Create a variable to hold the user's menu choice
@@ -97,10 +98,10 @@ int Menu::showMenu()
 	return choice;
 }
 
+
 /****************************************************
 ** Description: Get integer input from the user
 ****************************************************/
-
 int Menu::getInteger(string prompt)
 {
 	// Variable to store the number entered by the user.
@@ -120,6 +121,7 @@ int Menu::getInteger(string prompt)
 	return num;
 }
 
+
 int Menu::getIntegerWithMin(string prompt, int minVal)
 {
 	// Variable to store the number entered by the user.
@@ -130,6 +132,7 @@ int Menu::getIntegerWithMin(string prompt, int minVal)
 	}
 	return num;
 }
+
 
 int Menu::getIntegerWithMinMax(string prompt, int minVal, int maxVal)
 {
@@ -142,11 +145,11 @@ int Menu::getIntegerWithMinMax(string prompt, int minVal, int maxVal)
 	return num;
 }
 
+
 /****************************************************
 ** Description: Menus to get game variables from
 ** the user.
 ****************************************************/
-
 int Menu::getNumSteps()
 {
 	string prompt = "How many steps (between 1 and 1,000) would you like the simulation to run for?";
@@ -200,14 +203,16 @@ int Menu::getNumDoodlebugs()
     int bugs = getIntegerWithMinMax(prompt, MIN_DBUGS, MAX_DBUGS);
 	return bugs;
 }
+
+
 /***************************************************
-Citation - This code is modified from
-http://www.cplusplus.com/forum/general/58945/
-user - TheMassiveChipmunk
-
-introArtReader() - reads the intro ascii art from a file using getFileContents();
-then couts the file lines to the console and closes the file
-
+** Citation - This code is modified from
+** http://www.cplusplus.com/forum/general/58945/user
+** TheMassiveChipmunk
+**
+** introArtReader() - reads the intro ascii art from
+** a file using getFileContents(), then couts the 
+** file lines to the console and closes the file
 ****************************************************/
 void Menu::introArtReader()
 {
@@ -217,19 +222,23 @@ void Menu::introArtReader()
 		//Get file
 		string introArt = getFileContents(Reader);
 
-		cout << introArt << endl;               //Print it to the screen
+		//Print it to the screen
+		cout << introArt << endl;               
 
-		Reader.close();                           //Close file
+		 //Close file
+		Reader.close();                          
 }
 
+
+
 /***************************************************
-Citation - Thise code is modified from
-http://www.cplusplus.com/forum/general/58945/
-user - TheMassiveChipmunk
-
-goodbyeArtReader() - reads the intro ascii art from a file using getFileContents();
-then couts the file lines to the console and closes the file
-
+** Citation - This code is modified from
+** http://www.cplusplus.com/forum/general/58945/user
+** TheMassiveChipmunk
+**
+** goodbyeArtReader() - reads the intro ascii art 
+** from a file using getFileContents(), then couts 
+** the file lines to the console and closes the file
 ****************************************************/
 void Menu::goodbyeArtReader()
 {
@@ -244,11 +253,10 @@ void Menu::goodbyeArtReader()
 	Reader.close();                           //Close file
 }
 
+
 /***************************************************
-
-getFileContents() - cheks to make sure the file is available
-and if it is get the appropriately space and /n art
-
+** Checks to make sure the file is available and if
+** it is get the appropriately space and /n art
 ****************************************************/
 string Menu::getFileContents(ifstream & File)
 {

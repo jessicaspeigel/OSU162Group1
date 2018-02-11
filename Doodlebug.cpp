@@ -1,17 +1,16 @@
-/********************************************************************** //update moved, so doodlebug not moved again if true
-** Program
+/**********************************************************************
+** Group Project 1 Program name: Predator-Prey Game
 ** Author: Group 1
-** Date : 2/ / 18
-* * Description :
-
+** Date: 2/ / 18
+** Description: 
 *********************************************************************/
 
 #include "Doodlebug.hpp"
 #include <iostream>
-
 using std::cin;
 using std::cout;
 using std::endl;
+
 
 Doodlebug::Doodlebug(int row, int col) : Critter(row, col) 
 {
@@ -20,10 +19,12 @@ Doodlebug::Doodlebug(int row, int col) : Critter(row, col)
     timeSinceFeed = 0;
 }
 
+
 int Doodlebug::getType()
 {
     return 2;
 }
+
 
 bool Doodlebug::move(int* arr)
 {
@@ -68,7 +69,9 @@ bool Doodlebug::move(int* arr)
         if(arr[dir] == 0) //if the cell is open space, valid move is true
         {
             validMove = true; 
-            switch(dir) //adjust position of doodlebug based on direction taken (i.e. the index in surroundingCells array)
+            
+             //adjust position of doodlebug based on direction taken (i.e. the index in surroundingCells array)
+            switch(dir)
             {    
                 case(UP): //check up
                     row -= 1; 
@@ -103,14 +106,17 @@ bool Doodlebug::move(int* arr)
     return validMove;
 }
 
+
 void Doodlebug::starve() {
     cout << "doodlebug starve" << endl;
     starveFlag = true;
 }
 
+
 bool Doodlebug::isStarving() {
     return starveFlag;
 }
+
 
 void Doodlebug::breed() {
     cout << "doodlebug breed" << endl;
