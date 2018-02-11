@@ -1,27 +1,29 @@
 /**********************************************************************
-** Program
+** Group Project 1 Program name: Predator-Prey Game
 ** Author: Group 1
 ** Date : 2/ / 18
-* * Description :
-
+** Description: Specification file for the Ant class
 *********************************************************************/
 
 #include "Ant.hpp"
 #include <iostream>
-
 using std::cin;
 using std::cout;
 using std::endl;
 
-Ant::Ant(int row, int column) : Critter(row, column)
+
+Ant::Ant(int row, int column) 
+    : Critter(row, column)
 {
     this->breedAge = 3;
 }
+
 
 int Ant::getType()
 {
     return 1; 
 }
+
 
 bool Ant::move(int* arr)
 {
@@ -60,6 +62,7 @@ bool Ant::move(int* arr)
     moved = validMove;
     return validMove;
 }
+
 
 void Ant::breed() {
     cout << "ant breed" << endl;
