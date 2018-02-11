@@ -7,9 +7,15 @@
 *********************************************************************/
 
 #include "Ant.hpp"
+#include <iostream>
+
+using std::cin;
+using std::cout;
+using std::endl;
 
 Ant::Ant(int row, int column) : Critter(row, column)
 {
+    this->breedAge = 3;
 }
 
 int Ant::getType()
@@ -42,12 +48,20 @@ bool Ant::move(int* arr)
         }
     }
 
-    // Is it time to breed?
+    // Time to breed?
+    if (getTimeSinceBreed() >= getBreedingAge()) {
+        breed();
+    }
 
-    // Age the ant
-    incrementTime();
+    // Age the ant for breeding
+    incrementTimeSinceBreed();
 
     //update the critter's moved variable, true if moved, false otherwise
     moved = validMove;
     return validMove;
+}
+
+void Ant::breed() {
+    cout << "ant breed" << endl;
+    setReadyToBreed(true);
 }

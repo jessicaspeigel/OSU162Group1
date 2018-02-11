@@ -7,9 +7,16 @@
 *********************************************************************/
 
 #include "Doodlebug.hpp"
+#include <iostream>
+
+using std::cin;
+using std::cout;
+using std::endl;
 
 Doodlebug::Doodlebug(int row, int col) : Critter(row, col) 
 {
+    daysToStarvation = 3;
+    breedAge = 8;
     timeSinceFeed = 0;
 }
 
@@ -80,12 +87,32 @@ bool Doodlebug::move(int* arr)
     }
 
     // Time to starve?
+    if (timeSinceFeed >= daysToStarvation) {
+        starve();
+    }
 
     // Time to breed?
+    if (getTimeSinceBreed() >= getBreedingAge()) {
+        breed();
+    }
 
     // Age the doodlebug for breeding
-    incrementTime();
+    incrementTimeSinceBreed();
 
     moved = validMove; //update moved, so doodlebug not moved again if true
     return validMove;
+}
+
+void Doodlebug::starve() {
+    cout << "doodlebug starve" << endl;
+    starveFlag = true;
+}
+
+bool Doodlebug::isStarving() {
+    return starveFlag;
+}
+
+void Doodlebug::breed() {
+    cout << "doodlebug breed" << endl;
+    setReadyToBreed(true);
 }

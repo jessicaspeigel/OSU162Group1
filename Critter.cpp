@@ -7,23 +7,24 @@
 
 Critter::Critter(int row, int col)
 {
-    this->row = row; 
+    this->breedAge = 3;
+    this->row = row;
     this->col = col;
     this->moved = false;
-    resetTime();
+    setReadyToBreed(false);
 }
 
-void Critter::incrementTime()
+void Critter::incrementTimeSinceBreed()
 {
     timeSinceBreed += 1; 
 }
 
-int Critter::getTime()
+int Critter::getTimeSinceBreed()
 {
     return timeSinceBreed;
 }
 
-void Critter::resetTime()
+void Critter::resetTimeSinceBreed()
 {
     timeSinceBreed = 0;
 }
@@ -46,6 +47,23 @@ void Critter::setToNotMoved()
 bool Critter::getMoved()
 {
     return moved; 
+}
+
+void Critter::setReadyToBreed(bool flag) {
+    if (flag == true || flag == false) {
+        // Make sure it's a bool
+        breedFlag = flag;
+        // Reset the internal clock
+        resetTimeSinceBreed();
+    }
+}
+
+bool Critter::getReadyToBreed() {
+    return breedFlag;
+}
+
+int Critter::getBreedingAge() {
+    return breedAge;
 }
 
 Critter::~Critter(){}
