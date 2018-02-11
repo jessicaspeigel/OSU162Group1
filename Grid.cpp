@@ -1,6 +1,6 @@
 /*********************************************************************
 ** Group Project 1 Program name: Predator-Prey Game
-** Author: Ryan Mack
+** Author: Group 1
 ** Date: 2/5/2018
 ** Description: Implementation file for the Grid class.
 *********************************************************************/
@@ -17,11 +17,11 @@ using std::setw;
 
 Grid::Grid()
 {
-	steps = Menu::getNumSteps();
-	columns = Menu::getColumns();
-	rows = Menu::getRows();
-	ants = Menu::getNumAnts();
-	doodleBugs = Menu::getNumDoodlebugs();
+    steps = Menu::getNumSteps();
+    columns = Menu::getColumns();
+    rows = Menu::getRows();
+    ants = Menu::getNumAnts();
+    doodleBugs = Menu::getNumDoodlebugs();
     
     surroundingCells = new int[4]; 
 
@@ -45,6 +45,7 @@ Grid::Grid()
 	cout << "Ants: " << ants << endl;
 	cout << "Doodlebugs: " << doodleBugs << endl;
 }
+
 
 void Grid::fillGrid()
 {
@@ -74,6 +75,7 @@ void Grid::fillGrid()
     }
 }
 
+
 int Grid::checkCell(int row, int col)
 {
     if(grid[row][col] == nullptr)
@@ -85,6 +87,7 @@ int Grid::checkCell(int row, int col)
         return grid[row][col]->getType();
     }
 }
+
 
 void Grid::clearCell(int row, int col)
 {
@@ -116,6 +119,7 @@ void Grid::moveCritters()
     }
     printGrid();
 }
+
 
 void Grid::printGrid()
 {
@@ -156,6 +160,7 @@ void Grid::printGrid()
         cout << endl << FILLCHAR << setw(columns * 2) << FILLCHAR << endl;
     }
 }
+
 
 void Grid::getSurroundingCells(int row, int col)
 {
@@ -226,10 +231,12 @@ void Grid::getSurroundingCells(int row, int col)
     }
 }
 
+
 int Grid::getSteps()
 {
     return steps;
 }
+
 
 Grid::~Grid() 
 {
