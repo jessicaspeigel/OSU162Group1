@@ -28,7 +28,7 @@ Critter.cpp: Critter.hpp
 
 Doodlebug.cpp: Doodlebug.hpp
 
-Ant.cpp: Ant.ghpp
+Ant.cpp: Ant.hpp
 	
 clean:
 	rm predatorPrey ${OBJS}
