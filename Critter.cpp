@@ -2,7 +2,7 @@
  ** Group Project 1 Program name: Predator-Prey Game
  ** Author: 
  ** Date: 
- ** Description: Implementation Critter Class
+ ** Description: Implementation file for the Critter class
  ****************************************************************************/
  
 #include "Critter.hpp" 
