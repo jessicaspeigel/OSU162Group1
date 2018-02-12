@@ -24,6 +24,7 @@ class Menu
 		string promptText;
 
 	public:
+		Menu();
 		Menu(vector<string> menuItems);
 		Menu(string promptText, vector<string> menuItems);
 		int showMenu();
