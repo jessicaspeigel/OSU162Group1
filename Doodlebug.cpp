@@ -12,10 +12,10 @@ using std::cout;
 using std::endl;
 
 
-Doodlebug::Doodlebug(int row, int col) : Critter(row, col) 
+Doodlebug::Doodlebug(int row, int col) : Critter(row, col, 8) 
 {
     daysToStarvation = 3;
-    breedAge = 8;
+    timeSinceFeed = 0;
     timeSinceFeed = 0;
 }
 
@@ -94,11 +94,6 @@ bool Doodlebug::move(int* arr)
         starve();
     }
 
-    // Time to breed?
-    if (getTimeSinceBreed() >= getBreedingAge()) {
-        breed();
-    }
-
     // Age the doodlebug for breeding
     incrementTimeSinceBreed();
 
@@ -118,7 +113,81 @@ bool Doodlebug::isStarving() {
 }
 
 
-void Doodlebug::breed() {
-    cout << "doodlebug breed" << endl;
-    setReadyToBreed(true);
+Critter* Doodlebug::breed(int* surroundingCells)
+{
+    Critter* offspring; //offspring to return, nullptr of new Critter
+    int checkSequence[4]; //random sequence in which to check surroundingCells
+    int offspringRow; 
+    int offspringCol;
+    bool uniqueOrder = false; 
+    bool breedSuccess = false; 
+
+    for(int i = 0; i < 4; i++)
+    {
+        while(!uniqueOrder) 
+        {
+            uniqueOrder = true; 
+            checkSequence[i] = rand() % 4; 
+            for(int j = 0; j < i; j++)
+            {
+                if(checkSequence[i] == checkSequence[j])
+                {
+                    uniqueOrder = false; //if any of the previous indexes match, try again
+                }
+            }
+        }
+    }
+
+    for(int cell = 0; cell < 4; cell++)
+    {
+        if(!breedSuccess)
+        {
+            switch(checkSequence[cell])
+            {
+                case(UP):
+                    if(surroundingCells[0] == 0)
+                    {
+                        offspringRow = row - 1; 
+                        offspringCol = col;
+                        breedSuccess = true; 
+                    }
+                    break; 
+                case(RIGHT):
+                    if(surroundingCells[1] == 0)
+                    {
+                        offspringRow = row; 
+                        offspringCol = col + 1;
+                        breedSuccess = true; 
+                    }
+                    break; 
+                case(DOWN):
+                    if(surroundingCells[2] == 0)
+                    {
+                        offspringRow = row + 1; 
+                        offspringCol = col;
+                        breedSuccess = true; 
+                    }
+                    break; 
+                case(LEFT):
+                    if(surroundingCells[3] == 0)
+                    {
+                        offspringRow = row; 
+                        offspringCol = col - 1;
+                        breedSuccess = true; 
+                    }
+                    break; 
+            }
+        }
+    }
+
+    if(breedSuccess)
+    {
+        offspring = new Doodlebug(offspringRow, offspringCol);
+        resetTimeSinceBreed(); 
+    }
+    else
+    {
+        offspring = nullptr;
+    }
+    return offspring; 
 }

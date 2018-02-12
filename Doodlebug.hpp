@@ -31,7 +31,7 @@ public:
     virtual int getType();
     void starve();
     bool isStarving();
-    void breed();
+    Critter* breed(int*);
 
 };
 

@@ -13,9 +13,8 @@ using std::endl;
 
 
 Ant::Ant(int row, int column) 
-    : Critter(row, column)
+    : Critter(row, column, 3)
 {
-    this->breedAge = 3;
 }
 
 
@@ -50,11 +49,6 @@ bool Ant::move(int* arr)
         }
     }
 
-    // Time to breed?
-    if (getTimeSinceBreed() >= getBreedingAge()) {
-        breed();
-    }
-
     // Age the ant for breeding
     incrementTimeSinceBreed();
 
@@ -63,8 +57,81 @@ bool Ant::move(int* arr)
     return validMove;
 }
 
+Critter* Ant::breed(int* surroundingCells)
+{
+    Critter* offspring; 
+    int checkSequence[4]; 
+    int offspringRow; 
+    int offspringCol;
+    bool uniqueOrder = false; 
+    bool breedSuccess = false; 
 
-void Ant::breed() {
-    cout << "ant breed" << endl;
-    setReadyToBreed(true);
+    for(int i = 0; i < 4; i++)
+    {
+        while(!uniqueOrder)
+        {
+            uniqueOrder = true; 
+            checkSequence[i] = rand() % 4; 
+            for(int j = 0; j < i; j++)
+            {
+                if(checkSequence[i] == checkSequence[j])
+                {
+                    uniqueOrder = false; 
+                }
+            }
+        }
+    }
+
+    for(int cell = 0; cell < 4; cell++)
+    {
+        if(!breedSuccess)
+        {
+            switch(checkSequence[cell])
+            {
+                case(UP):
+                    if(surroundingCells[0] == 0)
+                    {
+                        offspringRow = row - 1; 
+                        offspringCol = col;
+                        breedSuccess = true; 
+                    }
+                    break; 
+                case(RIGHT):
+                    if(surroundingCells[1] == 0)
+                    {
+                        offspringRow = row; 
+                        offspringCol = col + 1;
+                        breedSuccess = true; 
+                    }
+                    break; 
+                case(DOWN):
+                    if(surroundingCells[2] == 0)
+                    {
+                        offspringRow = row + 1; 
+                        offspringCol = col;
+                        breedSuccess = true; 
+                    }
+                    break; 
+                case(LEFT):
+                    if(surroundingCells[3] == 0)
+                    {
+                        offspringRow = row; 
+                        offspringCol = col - 1;
+                        breedSuccess = true; 
+                    }
+                    break; 
+            }
+        }
+    }
+
+    if(breedSuccess)
+    {
+        offspring = new Ant(offspringRow, offspringCol);
+        resetTimeSinceBreed(); 
+    }
+    else
+    {
+        offspring = nullptr;
+    }
+    return offspring; 
 }

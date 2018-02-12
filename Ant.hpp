@@ -30,9 +30,7 @@ public:
     ** Returns 1, used for identifying creature in Grid::grid
     ****************************************************************************/
     virtual int getType();
-    
-    
-    void breed();
+    Critter* breed(int*);
 };
 
 #endif

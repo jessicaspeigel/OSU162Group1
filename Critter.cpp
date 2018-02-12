@@ -8,31 +8,28 @@
 #include "Critter.hpp" 
 
 
-Critter::Critter(int row, int col)
+Critter::Critter(int row, int col, int breedAge)
 {
-    this->breedAge = 3;
+    this->breedAge = breedAge;
     this->row = row;
     this->col = col;
     this->moved = false;
-    setReadyToBreed(false);
+    this->breedFlag = false;
 }
-
 
 void Critter::incrementTimeSinceBreed()
 {
     timeSinceBreed += 1; 
+    if(timeSinceBreed == breedAge)
+    {
+        breedFlag = true; 
+    }
 }
-
-
-int Critter::getTimeSinceBreed()
-{
-    return timeSinceBreed;
-}
-
 
 void Critter::resetTimeSinceBreed()
 {
     timeSinceBreed = 0;
+    breedFlag = false; 
 }
 
 
@@ -59,25 +56,8 @@ bool Critter::getMoved()
     return moved; 
 }
 
-
-void Critter::setReadyToBreed(bool flag) {
-    if (flag == true || flag == false) {
-        // Make sure it's a bool
-        breedFlag = flag;
-        // Reset the internal clock
-        resetTimeSinceBreed();
-    }
-}
-
-
-bool Critter::getReadyToBreed() {
+bool Critter::readyToBreed() {
     return breedFlag;
 }
-
-
-int Critter::getBreedingAge() {
-    return breedAge;
-}
-
 
 Critter::~Critter(){}

@@ -99,21 +99,38 @@ void Grid::moveCritters()
     bool validMove; 
     int newRow; 
     int newCol;
+    Critter* thisCritter; 
+    Critter* newCritter;
     for(int r = 0; r < rows; r++)
     {
         for(int c = 0; c < columns; c++)
         {
-            if(grid[r][c] != nullptr && !grid[r][c]->getMoved()) //Check to see if cell is critter, and critter has not already moved
-            {
-                getSurroundingCells(r, c);             
-                validMove = grid[r][c]->move(surroundingCells); //critter row and column update, if a valid move is made 
-                if(validMove)
+            if(grid[r][c] != nullptr)
+            { 
+                thisCritter = grid[r][c]; 
+                if(!thisCritter->getMoved()) //Check to see if cell is critter, and critter has not already moved
                 {
-                    newRow = grid[r][c]->getRow(); //get the updated row, changed in critter instance 
-                    newCol = grid[r][c]->getCol(); //get the updated column, changed in critter instance 
-                    grid[newRow][newCol] = grid[r][c]; //new cell equals the critter with updated row and column 
-                    grid[r][c] = nullptr; //clear the previous cell
-                } 
+                    getSurroundingCells(r, c);             
+                    validMove = thisCritter->move(surroundingCells); //critter row and column update, if a valid move is made 
+                    if(validMove)
+                    {
+                        newRow = thisCritter->getRow(); //get the updated row, changed in critter instance 
+                        newCol = thisCritter->getCol(); //get the updated column, changed in critter instance 
+                        grid[newRow][newCol] = thisCritter; //new cell equals the critter with updated row and column 
+                        grid[r][c] = nullptr; //clear the previous cell
+                    } 
+                }
+                if(thisCritter->readyToBreed())
+                {
+                    getSurroundingCells(thisCritter->getRow(), thisCritter->getCol()); 
+                    newCritter = thisCritter->breed(surroundingCells);
+                    if(newCritter != nullptr)
+                    {
+                        newRow = newCritter->getRow(); 
+                        newCol = newCritter->getCol(); 
+                        grid[newRow][newCol] = newCritter; 
+                    }
+                }
             } //if no valid move was made, we move on to the next cell
         }
     }

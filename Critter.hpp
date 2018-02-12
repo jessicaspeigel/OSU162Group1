@@ -24,7 +24,7 @@ protected:
         
 public:
     // constructor & destructor
-    Critter(int, int);
+    Critter(int, int, int);
     virtual ~Critter(); 
         
     // abstract base class functions
@@ -35,7 +35,7 @@ public:
     int getTimeSinceBreed();
     int getRow(); 
     int getCol();
-    bool getReadyToBreed();
+    bool readyToBreed();
     int getBreedingAge();
     bool getMoved(); //returns the bool moved
     
@@ -44,9 +44,9 @@ public:
     ** Resets Critter::moved to false
     ****************************************************************************/
     void setToNotMoved(); 
-    void setReadyToBreed(bool flag);
     void incrementTimeSinceBreed();
     void resetTimeSinceBreed();   //call after breeding to reset clock to 0
+    virtual Critter* breed(int*) = 0;
 }; 
 
 #endif
