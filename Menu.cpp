@@ -22,6 +22,10 @@ using std::ifstream;
 /****************************************************
 ** Constructors
 ****************************************************/
+Menu::Menu()
+{
+}
+
 Menu::Menu(vector<string> items)
 {
 	setMenuItems(items);
