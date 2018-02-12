@@ -24,6 +24,10 @@ int main()
     // Get the main menu ready
     vector<string> mainMenuItems = {"Run a Predator/Prey Simulation", "Exit"};
     
+    Menu menu;
+    //run the intro art
+	menu.introArtReader();
+    
     Menu mainMenu("Welcome to Doodlebugs, would you like to play?", mainMenuItems);
     int menuChoice = mainMenu.showMenu();
     
@@ -41,6 +45,11 @@ int main()
         }
         menuChoice = mainMenu.showMenu();
     }
-
+    //goodbye art
+	menu.goodbyeArtReader();
+	cout << "Press Enter to Exit. . .\n";
+	cin.get();
+	cin.get();
+    
     return 0;
 }
