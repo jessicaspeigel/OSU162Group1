@@ -65,8 +65,13 @@ public:
     ** surroundingCells[2] = cell below critter
     ** surroundingCells[3] = cell left of critter
     ****************************************************************************/
-    void getSurroundingCells(int, int); 
-    int getSteps(); 
+    void getSurroundingCells(int, int);
+
+	/****************************************************************************
+    ** Getters and setters for number of steps
+    ****************************************************************************/
+    int getSteps();
+	void setSteps(int steps);
     ~Grid();
 };
 

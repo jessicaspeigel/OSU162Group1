@@ -269,6 +269,13 @@ int Grid::getSteps()
     return steps;
 }
 
+void Grid::setSteps(int steps) {
+    // Only accept positive integer input
+    if (steps > 0) {
+        this->steps = steps;
+    }
+}
+
 
 Grid::~Grid() 
 {
