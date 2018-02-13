@@ -23,6 +23,11 @@ int Ant::getType()
     return 1; 
 }
 
+bool Ant::starvationCheck()
+{
+    return false; 
+}
+
 
 bool Ant::move(int* arr)
 {
