@@ -2,7 +2,7 @@
 ** Group Project 1 Program name: Predator-Prey Game
 ** Author: Group 1
 ** Date: 2/ / 18
-** Description: 
+** Description: This is the file containing all the functions for the Doodlebug derived class. There are more functions contained in Critter.cpp/.hpp that are usable by Doodlebug objects as well.
 *********************************************************************/
 
 #include "Doodlebug.hpp"
@@ -11,6 +11,9 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+/***************************************************
+ ** Description: Constructor for Doodlebugs.
+ ****************************************************/
 
 Doodlebug::Doodlebug(int row, int col) : Critter(row, col, 8) 
 {
@@ -19,12 +22,18 @@ Doodlebug::Doodlebug(int row, int col) : Critter(row, col, 8)
     timeSinceFeed = 0;
 }
 
+/***************************************************
+ ** Description: Returns 2. This will happen if the critter is of type doodlebug.
+ ****************************************************/
 
 int Doodlebug::getType()
 {
     return 2;
 }
 
+/***************************************************
+ ** Description: Moves the doodlebug. First the Doodlebug looks if there's an ant in an adjacent space. If so, the Dbug will move there and eat the ant. Otherwise, it checks if there's any open space at all. If there is, the doodlebug will move to that space. Regardless of if the Dbug moves or not, the timesinceFeed counter increases by 1 if an ant is not eaten.
+ ****************************************************/
 
 bool Doodlebug::move(int* arr)
 {
@@ -89,10 +98,6 @@ bool Doodlebug::move(int* arr)
         }
     }
 
-    // Time to starve?
-    if (timeSinceFeed >= daysToStarvation) {
-        starve();
-    }
 
     // Age the doodlebug for breeding
     incrementTimeSinceBreed();
@@ -101,17 +106,25 @@ bool Doodlebug::move(int* arr)
     return validMove;
 }
 
+/***************************************************
+ ** Description: Checks to see if the Doodlebug has not eaten in 3 turns or more, and then starves the doodlebug.
+ ****************************************************/
 
-void Doodlebug::starve() {
-    cout << "doodlebug starve" << endl;
-    starveFlag = true;
-}
-
-
-bool Doodlebug::isStarving() {
+bool Doodlebug::starvationCheck()
+{
+    starveFlag = false;
+    
+    if (timeSinceFeed > 3)  ///If it hasn't eaten in 3 steps or more.
+        {starveFlag = true;
+        cout << "A doodlebug starved after not eating for three steps!" << endl;   //Let the user know a doodlebug starved!
+        }
+    
     return starveFlag;
 }
 
+/***************************************************
+ ** Description: Breeds the doodlebug, provided that there is at least one empty space adjacent.
+ ****************************************************/
 
 Critter* Doodlebug::breed(int* surroundingCells)
 {

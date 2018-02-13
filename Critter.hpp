@@ -29,7 +29,8 @@ public:
         
     // abstract base class functions
     virtual bool move(int*) = 0; 
-    virtual int getType() = 0; 
+    virtual int getType() = 0;
+    virtual bool starvationCheck() = 0;
    
     // getters    
     int getTimeSinceBreed();

@@ -48,8 +48,8 @@ int main()
     //goodbye art
 	menu.goodbyeArtReader();
 	cout << "Press Enter to Exit. . .\n";
-	cin.get();
-	cin.get();
+    std::cin.get();
+    std::cin.get();
     
     return 0;
 }

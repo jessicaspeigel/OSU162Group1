@@ -101,10 +101,12 @@ void Grid::moveCritters()
     int newCol;
     Critter* thisCritter; 
     Critter* newCritter;
+    bool deadCritter = false;   ///If a doodlebug starves, don't ask if it can breed.
     for(int r = 0; r < rows; r++)
     {
         for(int c = 0; c < columns; c++)
         {
+            deadCritter = false; //reset deadCritter to false every loop.
             if(grid[r][c] != nullptr)
             { 
                 thisCritter = grid[r][c]; 
@@ -118,17 +120,28 @@ void Grid::moveCritters()
                         newCol = thisCritter->getCol(); //get the updated column, changed in critter instance 
                         grid[newRow][newCol] = thisCritter; //new cell equals the critter with updated row and column 
                         grid[r][c] = nullptr; //clear the previous cell
-                    } 
+                    }
                 }
-                if(thisCritter->readyToBreed())
+                
+                if (thisCritter->getType() == 2) { //If the critter is a Doodlebug
+                    if (thisCritter->starvationCheck() == true) { // If the Doodlebug is starving.
+                        //cout << "Deleting doodlebug: " << thisCritter << " from row: " << newRow << " / col: " << newCol << endl;
+                        thisCritter = nullptr;
+                        grid[newRow][newCol] = nullptr;
+                        // If the doodlebug starves, remove the doodlebug, and make sure no breeding ensues for this critter.
+                        // This prevents memory leaks.
+                        deadCritter = true;
+                    }
+                }
+                else if(thisCritter->readyToBreed() && (deadCritter == false))
                 {
-                    getSurroundingCells(thisCritter->getRow(), thisCritter->getCol()); 
+                    getSurroundingCells(thisCritter->getRow(), thisCritter->getCol());
                     newCritter = thisCritter->breed(surroundingCells);
                     if(newCritter != nullptr)
                     {
-                        newRow = newCritter->getRow(); 
-                        newCol = newCritter->getCol(); 
-                        grid[newRow][newCol] = newCritter; 
+                        newRow = newCritter->getRow();
+                        newCol = newCritter->getCol();
+                        grid[newRow][newCol] = newCritter;
                     }
                 }
             } //if no valid move was made, we move on to the next cell
@@ -147,7 +160,7 @@ void Grid::printGrid()
     const char SPACECHAR = ' ';
     const char EDGECHAR = '|';
     // Clear the screen (code from Piazza as an alternative to system("clear"))
-    cout << "\033[2J\033[1;1H";
+    cout << "\033[2J\033[1;1H" << endl;
     // Output the first line
     cout << setfill(FILLCHAR);
     cout << FILLCHAR << setw(columns * 2) << FILLCHAR << endl;

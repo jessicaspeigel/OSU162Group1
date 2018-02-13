@@ -29,8 +29,7 @@ public:
     ****************************************************************************/
     virtual bool move(int*); 
     virtual int getType();
-    void starve();
-    bool isStarving();
+    bool starvationCheck();
     Critter* breed(int*);
 
 };
