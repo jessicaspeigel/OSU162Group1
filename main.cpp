@@ -34,7 +34,7 @@ int main()
 
     // Also make a menu to prompt for more steps at the end of the simulation
     vector<string> continueMenuItems = {"Keep running simulation", "Exit"};
-    int continueChoice = 1;
+    int continueChoice;
     Menu continueMenu("Would you like to continue to run the simulation for more steps?", continueMenuItems);
     
     // Start the program
@@ -43,9 +43,9 @@ int main()
         // Tell the grader we did the extra credit:
         cout << "Enter the setup variables to start the game (EXTRA CREDIT):" << endl << endl;
         Grid simulation;
-        
+        continueChoice = 1;  
         for(int i = 0; i < simulation.getSteps() && continueChoice == 1; i++) {
-            currentStep++;
+            //currentStep++;
             cout << "Step: " << (i + 1) << endl;
             simulation.moveCritters();
             cout << endl;
