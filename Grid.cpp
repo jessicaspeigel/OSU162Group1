@@ -126,6 +126,8 @@ void Grid::moveCritters()
                 if (thisCritter->getType() == 2) { //If the critter is a Doodlebug
                     if (thisCritter->starvationCheck() == true) { // If the Doodlebug is starving.
                         //cout << "Deleting doodlebug: " << thisCritter << " from row: " << newRow << " / col: " << newCol << endl;
+                        newRow = thisCritter->getRow(); //We need to get row and col, in case critter did not move
+                        newCol = thisCritter->getCol(); 
                         thisCritter = nullptr;
                         grid[newRow][newCol] = nullptr;
                         // If the doodlebug starves, remove the doodlebug, and make sure no breeding ensues for this critter.
@@ -133,7 +135,7 @@ void Grid::moveCritters()
                         deadCritter = true;
                     }
                 }
-                else if(thisCritter->readyToBreed() && (deadCritter == false))
+                if((deadCritter == false) && thisCritter->readyToBreed())
                 {
                     getSurroundingCells(thisCritter->getRow(), thisCritter->getCol());
                     newCritter = thisCritter->breed(surroundingCells);
