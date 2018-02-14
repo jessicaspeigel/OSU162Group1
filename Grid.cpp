@@ -116,6 +116,14 @@ void Grid::moveCritters()
                     validMove = thisCritter->move(surroundingCells); //critter row and column update, if a valid move is made 
                     if(validMove)
                     {
+                        if(grid[r][c]->getType() == 2 && grid[r][c]->getEatFlag())
+                        {
+                            newCol = thisCritter->getCol(); //get the updated column, changed in critter instance 
+                            newRow = thisCritter->getRow(); //get the updated row, changed in critter instance 
+                            delete grid[newRow][newCol]; 
+                            grid[newRow][newCol] = thisCritter; //new cell equals the critter with updated row and column 
+                            grid[r][c] = nullptr; //clear the previous cell
+                        }
                         newRow = thisCritter->getRow(); //get the updated row, changed in critter instance 
                         newCol = thisCritter->getCol(); //get the updated column, changed in critter instance 
                         grid[newRow][newCol] = thisCritter; //new cell equals the critter with updated row and column 
@@ -129,6 +137,7 @@ void Grid::moveCritters()
                         newRow = thisCritter->getRow(); //We need to get row and col, in case critter did not move
                         newCol = thisCritter->getCol(); 
                         thisCritter = nullptr;
+                        delete grid[newRow][newCol]; 
                         grid[newRow][newCol] = nullptr;
                         // If the doodlebug starves, remove the doodlebug, and make sure no breeding ensues for this critter.
                         // This prevents memory leaks.
@@ -181,6 +190,7 @@ void Grid::printGrid()
                 }
                 else
                 {
+                    grid[r][c]->setEatFlag(false); 
                     cout << BUGCHAR << EDGECHAR;
                 }
             }

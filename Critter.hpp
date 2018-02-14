@@ -31,6 +31,9 @@ public:
     virtual bool move(int*) = 0; 
     virtual int getType() = 0;
     virtual bool starvationCheck() = 0;
+    virtual void setEatFlag(bool) = 0;
+    virtual bool getEatFlag() = 0;
+
    
     // getters    
     int getTimeSinceBreed();

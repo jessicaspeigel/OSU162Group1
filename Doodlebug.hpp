@@ -15,6 +15,7 @@ class Doodlebug : public Critter
 private:
     int timeSinceFeed; 	 	//track time since feeding
     bool starveFlag; 		//is the doodlebug starved?
+    bool eatFlag;
     int daysToStarvation;
 
 public:
@@ -30,6 +31,8 @@ public:
     virtual bool move(int*); 
     virtual int getType();
     bool starvationCheck();
+    void setEatFlag(bool);  
+    bool getEatFlag(); 
     Critter* breed(int*);
 
 };

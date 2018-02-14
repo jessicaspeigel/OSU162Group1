@@ -15,6 +15,7 @@ Critter::Critter(int row, int col, int breedAge)
     this->col = col;
     this->moved = false;
     this->breedFlag = false;
+    this->timeSinceBreed = 0;
 }
 
 void Critter::incrementTimeSinceBreed()

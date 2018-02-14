@@ -23,6 +23,17 @@ int Ant::getType()
     return 1; 
 }
 
+
+void Ant::setEatFlag(bool eat) 
+{
+    return eat;  
+}
+
+bool Ant::getEatFlag()
+{
+    return false;
+}
+
 bool Ant::starvationCheck()
 {
     return false; 
@@ -65,7 +76,7 @@ bool Ant::move(int* arr)
 Critter* Ant::breed(int* surroundingCells)
 {
     Critter* offspring; 
-    int checkSequence[4]; 
+    int checkSequence[4] = {-1, -1, -1, -1}; 
     int offspringRow; 
     int offspringCol;
     bool uniqueOrder = false; 

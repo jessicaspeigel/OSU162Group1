@@ -20,6 +20,7 @@ Doodlebug::Doodlebug(int row, int col) : Critter(row, col, 8)
     daysToStarvation = 3;
     timeSinceFeed = 0;
     timeSinceFeed = 0;
+    eatFlag = false;
 }
 
 /***************************************************
@@ -51,6 +52,7 @@ bool Doodlebug::move(int* arr)
     if(validMove)
     {
         timeSinceFeed = 0; //reset time since feeding
+        setEatFlag(true); 
         while(arr[dir] != 1)
         {
             dir = rand() % 4; //keep looking until ant is found; if more than one ant, doodlebug chooses randomly
@@ -129,7 +131,7 @@ bool Doodlebug::starvationCheck()
 Critter* Doodlebug::breed(int* surroundingCells)
 {
     Critter* offspring; //offspring to return, nullptr of new Critter
-    int checkSequence[4]; //random sequence in which to check surroundingCells
+    int checkSequence[4] = {-1, -1, -1, -1}; //random sequence in which to check surroundingCells
     int offspringRow; 
     int offspringCol;
     bool uniqueOrder = false; 
@@ -203,4 +205,14 @@ Critter* Doodlebug::breed(int* surroundingCells)
         offspring = nullptr;
     }
     return offspring; 
+}
+
+void Doodlebug::setEatFlag(bool eat)
+{
+    eatFlag = eat;
+}
+
+bool Doodlebug::getEatFlag()
+{
+    return eatFlag;
 }

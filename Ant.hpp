@@ -32,7 +32,8 @@ public:
     ** Returns 1, used for identifying creature in Grid::grid
     ****************************************************************************/
     virtual int getType();
-    
+    void setEatFlag(bool);
+    bool getEatFlag();
     bool starvationCheck();  ///This was added just to make starvationCheck usable within critter. Ants never starve.
     Critter* breed(int*);
 };
