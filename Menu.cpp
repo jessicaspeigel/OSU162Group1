@@ -248,7 +248,7 @@ void Menu::introArtReader()
 void Menu::goodbyeArtReader()
 {
 	//Open file
-	ifstream Reader("byefile.txt");
+	ifstream Reader("byeFile.txt");
 
 	//Get file
 	string goodbyeArt = getFileContents(Reader);
