@@ -9,6 +9,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <limits>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -77,7 +78,7 @@ string Menu::getPromptText()
 int Menu::showMenu()
 {
 	// Create a variable to hold the user's menu choice
-	int choice = 0;
+	unsigned int choice = 0;
 
 	// Show the prompt, if there is one
 	if (getPromptText() != "") {
@@ -85,7 +86,7 @@ int Menu::showMenu()
 	}
 
 	// Show the user the menu
-	for (int i = 0; i < menuItems.size(); i++) {
+	for (unsigned int i = 0; i < menuItems.size(); i++) {
 		// Show the menu item
 		cout << i + 1 << ". " << menuItems[i] << "\n";
 	}
