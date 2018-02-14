@@ -26,7 +26,7 @@ int Ant::getType()
 
 void Ant::setEatFlag(bool eat) 
 {
-    return eat;  
+    return;  
 }
 
 bool Ant::getEatFlag()
