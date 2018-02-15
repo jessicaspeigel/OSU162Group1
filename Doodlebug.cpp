@@ -116,9 +116,8 @@ bool Doodlebug::starvationCheck()
 {
     starveFlag = false;
     
-    if (timeSinceFeed > 3)  ///If it hasn't eaten in 3 steps or more.
+    if (timeSinceFeed > 3)  ///If it hasn't eaten in 3 steps or more, the doodlebug dies. 
         {starveFlag = true;
-        cout << "A doodlebug starved after not eating for three steps!" << endl;   //Let the user know a doodlebug starved!
         }
     
     return starveFlag;
