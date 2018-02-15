@@ -11,34 +11,54 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+/***************************************************
+ ** Description: Constructor for Ants.
+ ****************************************************/
 
 Ant::Ant(int row, int column) 
     : Critter(row, column, 3)
 {
 }
 
+/***************************************************
+ ** Description: Return 1, which is indicative of an ant in a space.
+ ****************************************************/
 
 int Ant::getType()
 {
     return 1; 
 }
 
+/***************************************************
+ ** Description: Set if the ant has eaten.
+ ****************************************************/
 
 void Ant::setEatFlag(bool eat) 
 {
     return;  
 }
 
+/***************************************************
+ ** Description: Return if the ant has eaten or not. Ants don't need to eat so this is always false.
+ ****************************************************/
+
 bool Ant::getEatFlag()
 {
     return false;
 }
+
+/***************************************************
+ ** Description: Return if the ant is starving. Ants don't need to eat so this is always false (They never starve).
+ ****************************************************/
 
 bool Ant::starvationCheck()
 {
     return false; 
 }
 
+/***************************************************
+ ** Description: Move the Ant.
+ ****************************************************/
 
 bool Ant::move(int* arr)
 {
@@ -73,6 +93,10 @@ bool Ant::move(int* arr)
     return validMove;
 }
 
+/***************************************************
+ ** Description: Breed the Ant.
+ ****************************************************/
+
 Critter* Ant::breed(int* surroundingCells)
 {
     Critter* offspring; 
@@ -82,7 +106,7 @@ Critter* Ant::breed(int* surroundingCells)
     bool uniqueOrder = false; 
     bool breedSuccess = false; 
 
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 4; i++)    //Check to see if the ant can breed in an empty space.
     {
         while(!uniqueOrder)
         {
@@ -140,7 +164,7 @@ Critter* Ant::breed(int* surroundingCells)
         }
     }
 
-    if(breedSuccess)
+    if(breedSuccess)   //If there's an open space, the ant can breed, so create a new ant in an adjacent space.
     {
         offspring = new Ant(offspringRow, offspringCol);
         resetTimeSinceBreed(); 

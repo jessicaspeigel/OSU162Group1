@@ -1,8 +1,8 @@
 /**********************************************************************
 ** Group Project 1 Program name: Predator-Prey Game
 ** Author: Group 1
-** Date: 2/ / 18
-** Description: 
+** Date: 2/14/18
+** Description: Specification file for the Doodlebug class. This class is derived from Critter.hpp
 *********************************************************************/
 
 #ifndef DOODLEBUG_HPP
