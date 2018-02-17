@@ -51,7 +51,7 @@ class Menu
 		//includes the intro and goodbye ascii art
 		void introArtReader();
 		void goodbyeArtReader();
-		string getFileContents(ifstream& File);
+		string getFileContents(ifstream& file);
 };
 
 #endif
