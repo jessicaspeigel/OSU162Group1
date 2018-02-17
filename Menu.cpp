@@ -222,7 +222,8 @@ int Menu::getNumDoodlebugs()
 void Menu::introArtReader()
 {
 		//Open file
-		ifstream Reader("introFile.txt");
+		ifstream Reader;
+		Reader.open("introFile.txt");
 
 		//Get file
 		string introArt = getFileContents(Reader);
@@ -263,23 +264,23 @@ void Menu::goodbyeArtReader()
 ** Checks to make sure the file is available and if
 ** it is get the appropriately space and /n art
 ****************************************************/
-string Menu::getFileContents(ifstream & File)
+string Menu::getFileContents(ifstream &file)
 {
 	//All lines
-	string Lines = "";
+	string lines = "";
 
 	//Check if everything is good
-	if (File)
+	if (file)
 	{
-		while (File.good())
+		while (file.good())
 		{
-			string TempLine;                  //Temp line
-			getline(File, TempLine);        //Get temp line
-			TempLine += "\n";                      //Add newline character
+			string tempLine;                //Temp line
+			getline(file, tempLine);        //Get temp line
+			tempLine += "\n";               //Add newline character
 
-			Lines += TempLine;                     //Add newline
+			lines += tempLine;              //Add newline
 		}
-		return Lines;
+		return lines;
 	}
 	else                           //Return error
 	{
