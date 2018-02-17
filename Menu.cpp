@@ -229,7 +229,9 @@ void Menu::introArtReader()
 		string introArt = getFileContents(Reader);
 
 		//Print it to the screen
-		cout << introArt << endl;               
+        if (introArt != "ERROR") {
+            cout << introArt << endl;
+        }
 
 		 //Close file
 		Reader.close();                          
@@ -254,9 +256,11 @@ void Menu::goodbyeArtReader()
 	//Get file
 	string goodbyeArt = getFileContents(Reader);
 
-	cout << goodbyeArt << endl;               //Print it to the screen
+    if (goodbyeArt != "ERROR") {
+        cout << goodbyeArt << endl; //Print it to the screen
+    }
 
-	Reader.close();                           //Close file
+	Reader.close();                 //Close file
 }
 
 
@@ -284,6 +288,6 @@ string Menu::getFileContents(ifstream &file)
 	}
 	else                           //Return error
 	{
-		return "ERROR File does not exist.";
+		return "ERROR";
 	}
 }

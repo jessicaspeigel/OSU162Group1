@@ -27,7 +27,7 @@ int main()
     Menu menu;
 
     //run the intro art
-	//menu.introArtReader();
+	menu.introArtReader();
     
     Menu mainMenu("Welcome to the doodlebugs game, would you like to play?", mainMenuItems);
     int menuChoice = mainMenu.showMenu();
@@ -61,6 +61,11 @@ int main()
         }
         menuChoice = mainMenu.showMenu();
     }
+
+    //goodbye art
+    menu.goodbyeArtReader();
+    //cout << "Press Enter to Exit. . .\n";
+    //std::cin.get();
 
     return 0;
 }
