@@ -222,13 +222,16 @@ int Menu::getNumDoodlebugs()
 void Menu::introArtReader()
 {
 		//Open file
-		ifstream Reader("introFile.txt");
+		ifstream Reader;
+		Reader.open("introFile.txt");
 
 		//Get file
 		string introArt = getFileContents(Reader);
 
 		//Print it to the screen
-		cout << introArt << endl;               
+        if (introArt != "ERROR") {
+            cout << introArt << endl;
+        }
 
 		 //Close file
 		Reader.close();                          
@@ -253,9 +256,11 @@ void Menu::goodbyeArtReader()
 	//Get file
 	string goodbyeArt = getFileContents(Reader);
 
-	cout << goodbyeArt << endl;               //Print it to the screen
+    if (goodbyeArt != "ERROR") {
+        cout << goodbyeArt << endl; //Print it to the screen
+    }
 
-	Reader.close();                           //Close file
+	Reader.close();                 //Close file
 }
 
 
@@ -263,26 +268,26 @@ void Menu::goodbyeArtReader()
 ** Checks to make sure the file is available and if
 ** it is get the appropriately space and /n art
 ****************************************************/
-string Menu::getFileContents(ifstream & File)
+string Menu::getFileContents(ifstream &file)
 {
 	//All lines
-	string Lines = "";
+	string lines = "";
 
 	//Check if everything is good
-	if (File)
+	if (file)
 	{
-		while (File.good())
+		while (file.good())
 		{
-			string TempLine;                  //Temp line
-			getline(File, TempLine);        //Get temp line
-			TempLine += "\n";                      //Add newline character
+			string tempLine;                //Temp line
+			getline(file, tempLine);        //Get temp line
+			tempLine += "\n";               //Add newline character
 
-			Lines += TempLine;                     //Add newline
+			lines += tempLine;              //Add newline
 		}
-		return Lines;
+		return lines;
 	}
 	else                           //Return error
 	{
-		return "ERROR File does not exist.";
+		return "ERROR";
 	}
 }

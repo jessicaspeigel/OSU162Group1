@@ -22,18 +22,18 @@ int main()
     srand (time(NULL)); //seed random
 
     // Get the main menu ready
-    vector<string> mainMenuItems = {"Run a Predator/Prey Simulation", "Exit"};
+    vector<string> mainMenuItems = {"Run a predator/prey simulation", "Exit"};
 
     Menu menu;
 
     //run the intro art
 	menu.introArtReader();
     
-    Menu mainMenu("Welcome to Doodlebugs, would you like to play?", mainMenuItems);
+    Menu mainMenu("Welcome to the doodlebugs game, would you like to play?", mainMenuItems);
     int menuChoice = mainMenu.showMenu();
 
     // Also make a menu to prompt for more steps at the end of the simulation
-    vector<string> continueMenuItems = {"Keep running simulation", "Exit"};
+    vector<string> continueMenuItems = {"Keep running simulation", "Stop running simulation"};
     int continueChoice;
     Menu continueMenu("Would you like to continue to run the simulation for more steps?", continueMenuItems);
     
@@ -61,10 +61,11 @@ int main()
         }
         menuChoice = mainMenu.showMenu();
     }
+
     //goodbye art
-	menu.goodbyeArtReader();
-	cout << "Press Enter to Exit. . .\n";
-    std::cin.get();
+    menu.goodbyeArtReader();
+    //cout << "Press Enter to Exit. . .\n";
+    //std::cin.get();
 
     return 0;
 }
